@@ -1,5 +1,7 @@
 package com.looqbox.backendchallenge.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -7,6 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.looqbox.backendchallenge.model.Pokemon;
 import com.looqbox.backendchallenge.repository.PokemonRepository;
 import com.looqbox.backendchallenge.rest.PokemonResponse;
 
@@ -27,4 +30,8 @@ public class PokemonService {
 		pokemonRepository.saveAll(response.getResults());
 	}
 
+	public List<Pokemon> getPokemons(String query) {
+		return pokemonRepository.findByNameStartingWith(query);
+	}
+	
 }
