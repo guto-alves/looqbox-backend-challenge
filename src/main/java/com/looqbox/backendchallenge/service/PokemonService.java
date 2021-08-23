@@ -37,6 +37,10 @@ public class PokemonService {
 		
 		PokemonsUtil.sort(pokemons, SortOrder.valueOf(sortOrder.toUpperCase()));
 		
+		pokemons.stream().forEach((pokemon) -> {
+			pokemon.setHighlight("<pre>" + query + "</pre>" + pokemon.getName().substring(query.length()));
+		});
+		
 		return pokemons;
 	}
 
